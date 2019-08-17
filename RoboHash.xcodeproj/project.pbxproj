@@ -15,6 +15,8 @@
 		8DE36D33230792DF00E4FCF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE36D31230792DF00E4FCF9 /* LaunchScreen.storyboard */; };
 		8DE36D3E230792DF00E4FCF9 /* RoboHashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D3D230792DF00E4FCF9 /* RoboHashTests.swift */; };
 		8DE36D49230792DF00E4FCF9 /* RoboHashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D48230792DF00E4FCF9 /* RoboHashUITests.swift */; };
+		8DE36D5723079A3500E4FCF9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D5623079A3500E4FCF9 /* CoreDataManager.swift */; };
+		8DE36D592307B95100E4FCF9 /* RoboHashDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D582307B95100E4FCF9 /* RoboHashDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		8DE36D44230792DF00E4FCF9 /* RoboHashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoboHashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE36D48230792DF00E4FCF9 /* RoboHashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoboHashUITests.swift; sourceTree = "<group>"; };
 		8DE36D4A230792DF00E4FCF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DE36D5623079A3500E4FCF9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8DE36D582307B95100E4FCF9 /* RoboHashDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoboHashDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */,
 				8DE36D27230792DD00E4FCF9 /* ViewController.swift */,
+				8DE36D5623079A3500E4FCF9 /* CoreDataManager.swift */,
+				8DE36D582307B95100E4FCF9 /* RoboHashDataManager.swift */,
 				8DE36D29230792DD00E4FCF9 /* Main.storyboard */,
 				8DE36D2F230792DF00E4FCF9 /* Assets.xcassets */,
 				8DE36D31230792DF00E4FCF9 /* LaunchScreen.storyboard */,
@@ -260,6 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE36D2E230792DD00E4FCF9 /* RoboHash.xcdatamodeld in Sources */,
+				8DE36D592307B95100E4FCF9 /* RoboHashDataManager.swift in Sources */,
+				8DE36D5723079A3500E4FCF9 /* CoreDataManager.swift in Sources */,
 				8DE36D28230792DD00E4FCF9 /* ViewController.swift in Sources */,
 				8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */,
 			);
