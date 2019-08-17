@@ -16,8 +16,7 @@ class ViewController: UIViewController {
         let history = SearchHistory(name: "Booo", date: Date(), image: UIImage(named: "navin.png"))
         try? dataBase.save(history)
         try? dataBase.fetchAll().map { print($0.name) }
-        
-        // Do any additional setup after loading the view.
+
     }
     
     

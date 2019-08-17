@@ -25,7 +25,7 @@ final class RoboHashDataBase: DataBase {
     
     init() {
         do {
-            coreDataStack = try CoreDataStack.setup(modelName: "RoboHash", storeName: "RoboHash")
+            coreDataStack = try CoreDataStack.setup(withModelName: "RoboHash", storeName: "RoboHash")
         } catch {
             fatalError(error.localizedDescription)
         }

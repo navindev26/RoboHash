@@ -15,7 +15,7 @@ class CoreDataStack {
     var mainContext: NSManagedObjectContext?
     private var privateContext: NSManagedObjectContext?
     
-    static func setup(modelName: String, storeName: String) throws -> CoreDataStack  {
+    static func setup(withModelName modelName: String, storeName: String) throws -> CoreDataStack  {
         let stack = CoreDataStack()
         let model = try stack.setupModel(name: modelName)
         let persistentStoreCoordinator = try stack.setupPersistentStoreCoordinator(from: model, storeName: storeName)
