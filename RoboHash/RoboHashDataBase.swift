@@ -50,21 +50,35 @@ final class RoboHashDataBase: DataBase {
 }
 
 struct SearchHistory {
-    var name: String?
+    var name: String
     var date: Date?
     var image: UIImage?
     
-    init(name: String?, date: Date?, image: UIImage?) {
+    init(name: String, date: Date, image: UIImage?) {
         self.name = name
         self.date = date
         self.image = image
     }
     
     init(from model: CDSearchHistory) {
-        self.name = model.name
-        self.date = model.date
-        if let data = model.image {
-            self.image = UIImage(data: data)
+        name = model.name ?? ""
+        date = model.date
+        if let imageData = model.image {
+             self.image = UIImage(data: imageData)
         }
     }
+}
+
+extension SearchHistory: ResponseDataSerializable {
+
+    init?(httpResponse: HTTPURLResponse?, data: Data?) {
+        guard let name = httpResponse?.url?.path else { return nil }
+        guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
+        guard let imageData = data else { return nil }
+
+        self.name = name
+        self.date = Date()
+        self.image = UIImage(data: imageData)
+    }
+
 }

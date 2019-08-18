@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6F204E23091249005BD2D8 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F204D23091249005BD2D8 /* Network.swift */; };
 		8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */; };
 		8DE36D28230792DD00E4FCF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* ViewController.swift */; };
 		8DE36D2B230792DD00E4FCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE36D29230792DD00E4FCF9 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		8DE36F652308FA2800E4FCF9 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE36F5B2308F9F300E4FCF9 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DE36F682308FA4C00E4FCF9 /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE36F492308F9E800E4FCF9 /* DifferenceKit.framework */; };
 		8DE36F692308FA4C00E4FCF9 /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE36F492308F9E800E4FCF9 /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DE36F6D2308FB1100E4FCF9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36F6C2308FB1100E4FCF9 /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +195,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8D6F204D23091249005BD2D8 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		8DE36D22230792DD00E4FCF9 /* RoboHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoboHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DE36D27230792DD00E4FCF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		8DE36F202308F9A300E4FCF9 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Carthage/Checkouts/Alamofire/Alamofire.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8DE36F432308F9E800E4FCF9 /* DifferenceKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DifferenceKit.xcodeproj; path = Carthage/Checkouts/DifferenceKit/DifferenceKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8DE36F4C2308F9F300E4FCF9 /* ReactiveSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveSwift.xcodeproj; path = Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj; sourceTree = SOURCE_ROOT; };
+		8DE36F6C2308FB1100E4FCF9 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +272,8 @@
 			children = (
 				8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */,
 				8DE36D27230792DD00E4FCF9 /* ViewController.swift */,
+				8DE36F6C2308FB1100E4FCF9 /* API.swift */,
+				8D6F204D23091249005BD2D8 /* Network.swift */,
 				8DE36D5623079A3500E4FCF9 /* CoreDataStack.swift */,
 				8DE36D582307B95100E4FCF9 /* RoboHashDataBase.swift */,
 				8DE36D622307C2E600E4FCF9 /* navin.png */,
@@ -605,9 +611,11 @@
 			files = (
 				8DE36D2E230792DD00E4FCF9 /* RoboHash.xcdatamodeld in Sources */,
 				8DE36D592307B95100E4FCF9 /* RoboHashDataBase.swift in Sources */,
+				8DE36F6D2308FB1100E4FCF9 /* API.swift in Sources */,
 				8DE36D5723079A3500E4FCF9 /* CoreDataStack.swift in Sources */,
 				8DE36D28230792DD00E4FCF9 /* ViewController.swift in Sources */,
 				8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */,
+				8D6F204E23091249005BD2D8 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
