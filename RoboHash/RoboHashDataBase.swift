@@ -76,9 +76,10 @@ extension SearchHistory: ResponseDataSerializable {
         guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
+        self.date = dateFormatter.date(from: dateString)
         self.name = name
-        self.date = Date()
         self.image = UIImage(data: imageData)
     }
-
 }
