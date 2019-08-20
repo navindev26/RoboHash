@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8D6F204E23091249005BD2D8 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F204D23091249005BD2D8 /* Network.swift */; };
+		8D6F2095230C1AF6005BD2D8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F2094230C1AF6005BD2D8 /* Repository.swift */; };
+		8D6F20B1230C256B005BD2D8 /* AvatarSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B0230C256B005BD2D8 /* AvatarSearchView.swift */; };
+		8D6F20B3230C2656005BD2D8 /* AvatarSearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B2230C2656005BD2D8 /* AvatarSearchViewState.swift */; };
 		8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */; };
-		8DE36D28230792DD00E4FCF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* ViewController.swift */; };
+		8DE36D28230792DD00E4FCF9 /* AvatarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */; };
 		8DE36D2B230792DD00E4FCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE36D29230792DD00E4FCF9 /* Main.storyboard */; };
 		8DE36D2E230792DD00E4FCF9 /* RoboHash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D2C230792DD00E4FCF9 /* RoboHash.xcdatamodeld */; };
 		8DE36D30230792DF00E4FCF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DE36D2F230792DF00E4FCF9 /* Assets.xcassets */; };
@@ -196,9 +199,12 @@
 
 /* Begin PBXFileReference section */
 		8D6F204D23091249005BD2D8 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8D6F2094230C1AF6005BD2D8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8D6F20B0230C256B005BD2D8 /* AvatarSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSearchView.swift; sourceTree = "<group>"; };
+		8D6F20B2230C2656005BD2D8 /* AvatarSearchViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSearchViewState.swift; sourceTree = "<group>"; };
 		8DE36D22230792DD00E4FCF9 /* RoboHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoboHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DE36D27230792DD00E4FCF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSearchViewController.swift; sourceTree = "<group>"; };
 		8DE36D2A230792DD00E4FCF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DE36D2D230792DD00E4FCF9 /* RoboHash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoboHash.xcdatamodel; sourceTree = "<group>"; };
 		8DE36D2F230792DF00E4FCF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -271,7 +277,10 @@
 			isa = PBXGroup;
 			children = (
 				8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */,
-				8DE36D27230792DD00E4FCF9 /* ViewController.swift */,
+				8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */,
+				8D6F20B0230C256B005BD2D8 /* AvatarSearchView.swift */,
+				8D6F20B2230C2656005BD2D8 /* AvatarSearchViewState.swift */,
+				8D6F2094230C1AF6005BD2D8 /* Repository.swift */,
 				8DE36F6C2308FB1100E4FCF9 /* API.swift */,
 				8D6F204D23091249005BD2D8 /* Network.swift */,
 				8DE36D5623079A3500E4FCF9 /* CoreDataStack.swift */,
@@ -610,11 +619,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE36D2E230792DD00E4FCF9 /* RoboHash.xcdatamodeld in Sources */,
+				8D6F20B3230C2656005BD2D8 /* AvatarSearchViewState.swift in Sources */,
 				8DE36D592307B95100E4FCF9 /* RoboHashDataBase.swift in Sources */,
 				8DE36F6D2308FB1100E4FCF9 /* API.swift in Sources */,
+				8D6F2095230C1AF6005BD2D8 /* Repository.swift in Sources */,
 				8DE36D5723079A3500E4FCF9 /* CoreDataStack.swift in Sources */,
-				8DE36D28230792DD00E4FCF9 /* ViewController.swift in Sources */,
+				8DE36D28230792DD00E4FCF9 /* AvatarSearchViewController.swift in Sources */,
 				8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */,
+				8D6F20B1230C256B005BD2D8 /* AvatarSearchView.swift in Sources */,
 				8D6F204E23091249005BD2D8 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
