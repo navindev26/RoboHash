@@ -85,11 +85,11 @@ struct SearchHistory {
 extension SearchHistory: ResponseDataSerializable {
 
     init?(httpResponse: HTTPURLResponse?, data: Data?) {
-        guard let name = httpResponse?.url?.path else { return nil }
+        guard let components = httpResponse?.url?.pathComponents else { return nil }
         guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
         self.date = SharedDateformatter.shared.dateFormat.date(from: dateString)
-        self.name = String(name.dropFirst()) // we remove the occurence of "/"
+        self.name = components.dropFirst().joined(separator: "") // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }
 }
