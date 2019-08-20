@@ -11,7 +11,17 @@ import ReactiveSwift
 
 class Repository {
     let dataBase = RoboHashDataBase.shared
-    func fetchAvatar(forHash hash: String) -> SignalProducer<SearchHistory, NetworkError> {
+    
+    func totalCount() -> Int? {
+        do {
+            return try dataBase.totalCount()
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
+    func fetchAndCacheAvatar(forHash hash: String) -> SignalProducer<SearchHistory, NetworkError> {
         let endpoint = RoboHashAPI.avatar(hash: hash)
         return RoboHashNetworkService().makeRequest(endpoint).on(value: { [weak self] (history) in
             try? self?.dataBase.save(history)

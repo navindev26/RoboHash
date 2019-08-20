@@ -102,6 +102,7 @@ enum CoreDataStackError: Error {
     // can extend this to add in more fine grained errors
     case stackSetupError
     case contextSaveError
+    case fetchError
 }
 
 extension CDSearchHistory {

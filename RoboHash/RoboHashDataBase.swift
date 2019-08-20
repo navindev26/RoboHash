@@ -13,11 +13,13 @@ import CoreData
 protocol DataBase {
     associatedtype Model
     var coreDataStack: CoreDataStack? { get }
+    func totalCount() throws -> Int
     func fetchAll() throws -> [Model]
     func save(_ object: Model) throws
 }
 
 final class RoboHashDataBase: DataBase {
+
     typealias Model = SearchHistory
     var coreDataStack: CoreDataStack?
     
@@ -34,9 +36,17 @@ final class RoboHashDataBase: DataBase {
     func fetchAll() throws -> [SearchHistory] {
         let request: NSFetchRequest<CDSearchHistory> = CDSearchHistory.sortedFetchRequest
         guard let result = try coreDataStack?.mainContext?.fetch(request) else {
-            throw CoreDataStackError.contextSaveError
+            throw CoreDataStackError.fetchError
         }
         return result.map { SearchHistory(from: $0) }
+    }
+
+    func totalCount() throws -> Int {
+        let request: NSFetchRequest<CDSearchHistory> = CDSearchHistory.sortedFetchRequest
+        guard let result = try coreDataStack?.mainContext?.count(for: request) else {
+            throw CoreDataStackError.fetchError
+        }
+        return result
     }
     
     func save(_ object: SearchHistory) throws {
@@ -54,7 +64,7 @@ struct SearchHistory {
     var date: Date?
     var image: UIImage?
     
-    init(name: String, date: Date, image: UIImage?) {
+    init(name: String, date: Date?, image: UIImage?) {
         self.name = name
         self.date = date
         self.image = image
@@ -66,6 +76,10 @@ struct SearchHistory {
         if let imageData = model.image {
              self.image = UIImage(data: imageData)
         }
+    }
+
+    static var empty: SearchHistory {
+        return SearchHistory(name: "", date: nil, image: nil)
     }
 }
 
@@ -79,7 +93,7 @@ extension SearchHistory: ResponseDataSerializable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
         self.date = dateFormatter.date(from: dateString)
-        self.name = name
+        self.name = String(name.dropFirst()) // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }
 }

@@ -30,12 +30,13 @@ class AvatarSearchView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
+        searchTextField.placeholder = "type any name and find an avatar"
     }
 
     private func update() {
         guard let state = viewState else { return }
         searchTextField.text = state.text
-        searchHistory.title = "Search(5)"
+        searchHistory.title = state.history
         avatarImageView.image = state.image
         state.isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
