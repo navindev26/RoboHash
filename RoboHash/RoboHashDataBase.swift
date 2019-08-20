@@ -22,7 +22,6 @@ final class RoboHashDataBase: DataBase {
 
     typealias Model = SearchHistory
     var coreDataStack: CoreDataStack?
-    
     static let shared = RoboHashDataBase()
     
     init() {
@@ -89,11 +88,19 @@ extension SearchHistory: ResponseDataSerializable {
         guard let name = httpResponse?.url?.path else { return nil }
         guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
-        self.date = dateFormatter.date(from: dateString)
+        self.date = SharedDateformatter.shared.dateFormat.date(from: dateString)
         self.name = String(name.dropFirst()) // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }
+}
+
+// Helper Singleton to avoid setting the format everytime
+
+class SharedDateformatter {
+    static let shared = SharedDateformatter()
+    lazy var dateFormat: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
+        return dateFormatter
+    }()
 }

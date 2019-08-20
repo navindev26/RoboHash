@@ -24,7 +24,11 @@ class Repository {
     func fetchAndCacheAvatar(forHash hash: String) -> SignalProducer<SearchHistory, NetworkError> {
         let endpoint = RoboHashAPI.avatar(hash: hash)
         return RoboHashNetworkService().makeRequest(endpoint).on(value: { [weak self] (history) in
-            try? self?.dataBase.save(history)
+            do {
+                try self?.dataBase.save(history)
+            } catch {
+                print(error)
+            }
         })
     }
 }
