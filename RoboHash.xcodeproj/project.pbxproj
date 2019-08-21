@@ -15,6 +15,32 @@
 		8D6F20B7230CD543005BD2D8 /* SearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B6230CD543005BD2D8 /* SearchHistoryView.swift */; };
 		8D6F20B9230CD6EC005BD2D8 /* SearchHistoryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B8230CD6EC005BD2D8 /* SearchHistoryViewState.swift */; };
 		8D6F20BB230D0F27005BD2D8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20BA230D0F27005BD2D8 /* Helper.swift */; };
+		8D6F20CA230D950E005BD2D8 /* RoboHashDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D582307B95100E4FCF9 /* RoboHashDataBase.swift */; };
+		8D6F20D9230D9515005BD2D8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D5623079A3500E4FCF9 /* CoreDataStack.swift */; };
+		8D6F20DA230D9517005BD2D8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D5623079A3500E4FCF9 /* CoreDataStack.swift */; };
+		8D6F20DB230D95F7005BD2D8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F2094230C1AF6005BD2D8 /* Repository.swift */; };
+		8D6F20DC230D95F8005BD2D8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F2094230C1AF6005BD2D8 /* Repository.swift */; };
+		8D6F20DD230D96A5005BD2D8 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F204D23091249005BD2D8 /* Network.swift */; };
+		8D6F20DE230D96A6005BD2D8 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F204D23091249005BD2D8 /* Network.swift */; };
+		8D6F20DF230D96C0005BD2D8 /* AvatarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */; };
+		8D6F20E0230D96C0005BD2D8 /* AvatarSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B0230C256B005BD2D8 /* AvatarSearchView.swift */; };
+		8D6F20E1230D96C0005BD2D8 /* AvatarSearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B2230C2656005BD2D8 /* AvatarSearchViewState.swift */; };
+		8D6F20E2230D96C0005BD2D8 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B4230CD40B005BD2D8 /* SearchHistoryViewController.swift */; };
+		8D6F20E3230D96C0005BD2D8 /* SearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B6230CD543005BD2D8 /* SearchHistoryView.swift */; };
+		8D6F20E4230D96C0005BD2D8 /* SearchHistoryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B8230CD6EC005BD2D8 /* SearchHistoryViewState.swift */; };
+		8D6F20E5230D96C0005BD2D8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36F6C2308FB1100E4FCF9 /* API.swift */; };
+		8D6F20E6230D96C0005BD2D8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20BA230D0F27005BD2D8 /* Helper.swift */; };
+		8D6F20E7230D96C1005BD2D8 /* AvatarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */; };
+		8D6F20E8230D96C1005BD2D8 /* AvatarSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B0230C256B005BD2D8 /* AvatarSearchView.swift */; };
+		8D6F20E9230D96C1005BD2D8 /* AvatarSearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B2230C2656005BD2D8 /* AvatarSearchViewState.swift */; };
+		8D6F20EA230D96C1005BD2D8 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B4230CD40B005BD2D8 /* SearchHistoryViewController.swift */; };
+		8D6F20EB230D96C1005BD2D8 /* SearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B6230CD543005BD2D8 /* SearchHistoryView.swift */; };
+		8D6F20EC230D96C1005BD2D8 /* SearchHistoryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20B8230CD6EC005BD2D8 /* SearchHistoryViewState.swift */; };
+		8D6F20ED230D96C1005BD2D8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36F6C2308FB1100E4FCF9 /* API.swift */; };
+		8D6F20EE230D96C1005BD2D8 /* RoboHashDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D582307B95100E4FCF9 /* RoboHashDataBase.swift */; };
+		8D6F20EF230D96C1005BD2D8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F20BA230D0F27005BD2D8 /* Helper.swift */; };
+		8D6F20F0230D96D5005BD2D8 /* RoboHash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D2C230792DD00E4FCF9 /* RoboHash.xcdatamodeld */; };
+		8D6F20F1230D96D5005BD2D8 /* RoboHash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D2C230792DD00E4FCF9 /* RoboHash.xcdatamodeld */; };
 		8DE36D26230792DD00E4FCF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D25230792DD00E4FCF9 /* AppDelegate.swift */; };
 		8DE36D28230792DD00E4FCF9 /* AvatarSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE36D27230792DD00E4FCF9 /* AvatarSearchViewController.swift */; };
 		8DE36D2B230792DD00E4FCF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE36D29230792DD00E4FCF9 /* Main.storyboard */; };
@@ -735,7 +761,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6F20DF230D96C0005BD2D8 /* AvatarSearchViewController.swift in Sources */,
+				8D6F20DD230D96A5005BD2D8 /* Network.swift in Sources */,
+				8D6F20D9230D9515005BD2D8 /* CoreDataStack.swift in Sources */,
+				8D6F20CA230D950E005BD2D8 /* RoboHashDataBase.swift in Sources */,
 				8DE36D3E230792DF00E4FCF9 /* RoboHashTests.swift in Sources */,
+				8D6F20F0230D96D5005BD2D8 /* RoboHash.xcdatamodeld in Sources */,
+				8D6F20DB230D95F7005BD2D8 /* Repository.swift in Sources */,
+				8D6F20E4230D96C0005BD2D8 /* SearchHistoryViewState.swift in Sources */,
+				8D6F20E0230D96C0005BD2D8 /* AvatarSearchView.swift in Sources */,
+				8D6F20E3230D96C0005BD2D8 /* SearchHistoryView.swift in Sources */,
+				8D6F20E2230D96C0005BD2D8 /* SearchHistoryViewController.swift in Sources */,
+				8D6F20E6230D96C0005BD2D8 /* Helper.swift in Sources */,
+				8D6F20E5230D96C0005BD2D8 /* API.swift in Sources */,
+				8D6F20E1230D96C0005BD2D8 /* AvatarSearchViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,7 +782,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6F20ED230D96C1005BD2D8 /* API.swift in Sources */,
 				8DE36D49230792DF00E4FCF9 /* RoboHashUITests.swift in Sources */,
+				8D6F20EA230D96C1005BD2D8 /* SearchHistoryViewController.swift in Sources */,
+				8D6F20DA230D9517005BD2D8 /* CoreDataStack.swift in Sources */,
+				8D6F20EE230D96C1005BD2D8 /* RoboHashDataBase.swift in Sources */,
+				8D6F20F1230D96D5005BD2D8 /* RoboHash.xcdatamodeld in Sources */,
+				8D6F20DE230D96A6005BD2D8 /* Network.swift in Sources */,
+				8D6F20E8230D96C1005BD2D8 /* AvatarSearchView.swift in Sources */,
+				8D6F20E7230D96C1005BD2D8 /* AvatarSearchViewController.swift in Sources */,
+				8D6F20DC230D95F8005BD2D8 /* Repository.swift in Sources */,
+				8D6F20E9230D96C1005BD2D8 /* AvatarSearchViewState.swift in Sources */,
+				8D6F20EF230D96C1005BD2D8 /* Helper.swift in Sources */,
+				8D6F20EB230D96C1005BD2D8 /* SearchHistoryView.swift in Sources */,
+				8D6F20EC230D96C1005BD2D8 /* SearchHistoryViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

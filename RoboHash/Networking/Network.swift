@@ -37,12 +37,19 @@ protocol ResponseDataSerializable {
 }
 
 protocol NetworkService {
-    associatedtype ResponseData: ResponseDataSerializable
-    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<ResponseData, RoboHashError>
+    associatedtype Response
+    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<Response, RoboHashError>
+}
+
+class RoboHashNetworkService: NetworkService {
+    typealias Response = SearchHistory
+    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<Response, RoboHashError> {
+        return requestSignalProducer(endpoint)
+    }
 }
 
 extension NetworkService {
-    func requestSignalProducer<T>(_ endpoint: Endpoint) -> SignalProducer<T, RoboHashError> where T : ResponseDataSerializable {
+    func requestSignalProducer<T:ResponseDataSerializable>(_ endpoint: Endpoint) -> SignalProducer<T, RoboHashError> {
         return SignalProducer { (observer, _) in
             guard let request = endpoint.request else {
                 observer.send(error: .requestError)
@@ -65,11 +72,5 @@ extension NetworkService {
                 }
             }
         }
-    }
-}
-
-class RoboHashNetworkService: NetworkService {
-    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<SearchHistory, RoboHashError>  {
-        return requestSignalProducer(endpoint)
     }
 }

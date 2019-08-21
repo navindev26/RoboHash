@@ -14,6 +14,13 @@ class CoreDataStack {
     
     var mainContext: NSManagedObjectContext?
     private var privateContext: NSManagedObjectContext?
+
+    static let modelName = "RoboHash"
+    static let storeName = "RoboHash"
+
+    static func prodStack() -> CoreDataStack? {
+        return try? CoreDataStack.setup(withModelName: modelName, storeName: storeName)
+    }
     
     static func setup(withModelName modelName: String, storeName: String) throws -> CoreDataStack  {
         let stack = CoreDataStack()
@@ -110,7 +117,7 @@ extension CDSearchHistory {
         return request
     }
     
-    static func createObject(from model: SearchHistory, in context: NSManagedObjectContext) -> CDSearchHistory {
+    static func createObject(from model: SearchHistoryModel, in context: NSManagedObjectContext) -> CDSearchHistory {
         let searchHistory = CDSearchHistory(context: context)
         searchHistory.name = model.name
         searchHistory.image = model.image?.pngData()

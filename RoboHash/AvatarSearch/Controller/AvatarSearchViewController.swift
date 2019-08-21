@@ -10,11 +10,10 @@ import UIKit
 import Alamofire
 import ReactiveSwift
 import DifferenceKit
-import ReactiveCocoa
+
 
 class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
-
-    let repository = Repository()
+    var repository: RepositoryRepresentable = Repository()
     var avatarSearchView: AvatarSearchView? {
         return self.view as? AvatarSearchView
     }
@@ -65,7 +64,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
     }
 
     private func fetchHistoryCount(completion: ((Int) -> Void)? = nil) {
-        self.repository.totalCount().observe(on: UIScheduler()).on(event: { [weak self] (event) in
+        repository.totalCount().observe(on: UIScheduler()).on(event: { [weak self] (event) in
             guard let `self` = self else { return }
             switch event {
             case .value(let value):

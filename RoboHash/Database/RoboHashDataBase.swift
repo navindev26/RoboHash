@@ -20,16 +20,13 @@ protocol DataBase {
 
 final class RoboHashDataBase: DataBase {
 
-    typealias Model = SearchHistory
     var coreDataStack: CoreDataStack?
-    static let shared = RoboHashDataBase()
+    static let shared = RoboHashDataBase(coreDataStack: CoreDataStack.prodStack())
+    typealias Model = SearchHistory
     
-    init() {
-        do {
-            coreDataStack = try CoreDataStack.setup(withModelName: "RoboHash", storeName: "RoboHash")
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+    init?(coreDataStack: CoreDataStack?) {
+        guard let coredataStack = coreDataStack else { return nil }
+        self.coreDataStack = coredataStack
     }
     
     func fetchAll() throws -> [SearchHistory] {
@@ -58,7 +55,14 @@ final class RoboHashDataBase: DataBase {
     }
 }
 
-struct SearchHistory {
+protocol SearchHistoryModel: ResponseDataSerializable {
+    var name: String { get }
+    var date: Date { get }
+    var image: UIImage? { get }
+    init?(httpResponse: HTTPURLResponse?, data: Data?)
+}
+
+struct SearchHistory: SearchHistoryModel {
     var name: String
     var date: Date
     var image: UIImage?
@@ -78,20 +82,17 @@ struct SearchHistory {
         self.image = UIImage(data: imageData)
     }
 
-    static var empty: SearchHistory {
-        return SearchHistory(name: "", date: Date(), image: nil)
-    }
-}
-
-extension SearchHistory: ResponseDataSerializable {
-
     init?(httpResponse: HTTPURLResponse?, data: Data?) {
         guard let components = httpResponse?.url?.pathComponents else { return nil }
-    //    guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
+        //    guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
-       // guard let date = SharedDateformatter.shared.dateFormat.date(from: dateString) else { return nil }
+        // guard let date = SharedDateformatter.shared.dateFormat.date(from: dateString) else { return nil }
         self.date = Date()
         self.name = components.dropFirst().joined(separator: "") // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
+    }
+
+    static var empty: SearchHistory {
+        return SearchHistory(name: "", date: Date(), image: nil)
     }
 }

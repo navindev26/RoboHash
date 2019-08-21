@@ -9,28 +9,33 @@
 import Foundation
 import ReactiveSwift
 
-class Repository {
-    let dataBase = RoboHashDataBase.shared
-    let service = RoboHashNetworkService()
-    
-    func totalCount() ->  SignalProducer<Int, RoboHashError> {
-        return SignalProducer { [weak self] (observer, lifetime) in
+protocol RepositoryRepresentable: class { 
+    var database: RoboHashDataBase { get }
+    var service: RoboHashNetworkService { get }
+    func totalCount() ->  SignalProducer<Int, RoboHashError>
+    func fetchAndCacheAvatar(forHash hash: String) -> SignalProducer<SearchHistory, RoboHashError>
+}
+
+extension RepositoryRepresentable {
+
+    func fetchAllSearchHistory() -> SignalProducer<[SearchHistory], RoboHashError> {
+        return SignalProducer {  [weak self] (observer, _) in
             guard let `self` = self else { return }
             do {
-                let totalCount = try self.dataBase.totalCount()
-                observer.send(value: totalCount)
+                let history = try self.database.fetchAll()
+                observer.send(value: history)
             } catch {
                 observer.send(error: .dataFetchError)
             }
         }
     }
 
-    func fetchAllSearchHistory() -> SignalProducer<[SearchHistory], RoboHashError> {
-        return SignalProducer {  [weak self] (observer, _) in
+    func totalCount() ->  SignalProducer<Int, RoboHashError> {
+        return SignalProducer { [weak self] (observer, lifetime) in
             guard let `self` = self else { return }
             do {
-                let histroy = try self.dataBase.fetchAll()
-                observer.send(value: histroy)
+                let totalCount = try self.database.totalCount()
+                observer.send(value: totalCount)
             } catch {
                 observer.send(error: .dataFetchError)
             }
@@ -45,7 +50,7 @@ class Repository {
                 switch event {
                 case .value(let value):
                     do {
-                        try self.dataBase.save(value)
+                        try self.database.save(value)
                         observer.send(value: value)// we try saving to DB else pass the error
                         observer.sendCompleted()
                     } catch {
@@ -61,4 +66,14 @@ class Repository {
     }
 }
 
+class Repository: RepositoryRepresentable {
+    let database: RoboHashDataBase
+    let service = RoboHashNetworkService()
 
+    init() {
+        guard let database = RoboHashDataBase.shared else {
+            fatalError()
+        }
+        self.database = database
+    }
+}
