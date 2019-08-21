@@ -29,7 +29,6 @@
         <!--Find an avatar-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="AvatarSearchViewController" customModule="RoboHash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="AvatarSearchView" customModule="RoboHash" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -41,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="213" id="b20-ld-uGi"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="type any name and find an avatar" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="veq-ei-juq">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="type any name and find an avatar" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="veq-ei-juq">
                                 <rect key="frame" x="18" y="136" width="284" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="tB4-KL-Xao"/>
@@ -66,7 +65,6 @@
                             <constraint firstItem="veq-ei-juq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="JiR-Gu-vC9"/>
                             <constraint firstItem="9Gi-14-Gnd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ssz-Rg-NYT"/>
                             <constraint firstItem="QPe-Fj-Hyb" firstAttribute="top" secondItem="veq-ei-juq" secondAttribute="bottom" constant="12" id="b7A-KC-y8s"/>
-                            <constraint firstItem="veq-ei-juq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rxr-Ef-ywY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Gi-14-Gnd" secondAttribute="trailing" constant="12" id="tAJ-mo-mFg"/>
                             <constraint firstItem="9Gi-14-Gnd" firstAttribute="top" secondItem="QPe-Fj-Hyb" secondAttribute="bottom" constant="12" id="ybg-Lu-Geh"/>
                         </constraints>
@@ -87,6 +85,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="EvS-LA-WhK">
                     <connections>
                         <action selector="didTapOnView:" destination="8bC-Xf-vdC" id="6mh-tp-cdh"/>
