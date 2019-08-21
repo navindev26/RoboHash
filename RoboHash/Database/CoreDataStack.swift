@@ -40,10 +40,10 @@ class CoreDataStack {
     
     private func setupModel(name: String) throws -> NSManagedObjectModel  {
         guard let modelURL = Bundle.main.url(forResource: name, withExtension: "momd") else {
-            throw CoreDataStackError.stackSetupError
+            throw RoboHashError.databaseError
         }
         guard let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
-            throw CoreDataStackError.stackSetupError
+            throw RoboHashError.databaseError
         }
         return managedObjectModel
     }
@@ -62,7 +62,7 @@ class CoreDataStack {
                                                               at: persistentStoreURL,
                                                               options: options)
         } catch {
-            throw CoreDataStackError.stackSetupError
+            throw RoboHashError.databaseError
         }
         return persistentStoreCoordinator
     }
@@ -72,7 +72,7 @@ extension CoreDataStack {
     
     func save() throws {
         guard let mainContext = mainContext, let privateContext = privateContext else {
-            throw CoreDataStackError.contextSaveError
+            throw RoboHashError.dataSaveError
         }
         mainContext.perform {
             do {
@@ -98,17 +98,10 @@ extension CoreDataStack {
     }
 }
 
-enum CoreDataStackError: Error {
-    // can extend this to add in more fine grained errors
-    case stackSetupError
-    case contextSaveError
-    case fetchError
-}
-
 extension CDSearchHistory {
     
     static var defaultSortDescriptors: [NSSortDescriptor] {
-        return [NSSortDescriptor(key: "date", ascending: true)]
+        return [NSSortDescriptor(key: "date", ascending: false)]
     }
     
     static var sortedFetchRequest: NSFetchRequest<CDSearchHistory> {

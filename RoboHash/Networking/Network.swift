@@ -12,11 +12,24 @@ import Alamofire
 import UIKit
 
 
-enum NetworkError: Error {
+enum RoboHashError: Error {
     case noInternet
     case responseError
     case requestError
     case genericError
+    case dataFetchError
+    case dataSaveError
+    case databaseError
+
+    var localizedDescription: String {
+        switch self {
+        case .noInternet:
+            return "There seems to be no network connectivity"
+        default:
+            return "Uh oh, something went wrong"
+        }
+    }
+
 }
 
 protocol ResponseDataSerializable {
@@ -25,11 +38,11 @@ protocol ResponseDataSerializable {
 
 protocol NetworkService {
     associatedtype ResponseData: ResponseDataSerializable
-    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<ResponseData, NetworkError>
+    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<ResponseData, RoboHashError>
 }
 
 extension NetworkService {
-    func requestSignalProducer<T>(_ endpoint: Endpoint) -> SignalProducer<T, NetworkError> where T : ResponseDataSerializable {
+    func requestSignalProducer<T>(_ endpoint: Endpoint) -> SignalProducer<T, RoboHashError> where T : ResponseDataSerializable {
         return SignalProducer { (observer, _) in
             guard let request = endpoint.request else {
                 observer.send(error: .requestError)
@@ -43,8 +56,12 @@ extension NetworkService {
                         return
                     }
                     observer.send(value:value)
-                case .failure:
-                    observer.send(error: .genericError)
+                case .failure(let error):
+                    if let err = error as? URLError, err.code  == URLError.Code.notConnectedToInternet {
+                        observer.send(error: .noInternet)
+                    } else {
+                        observer.send(error: .genericError)
+                    }
                 }
             }
         }
@@ -52,7 +69,7 @@ extension NetworkService {
 }
 
 class RoboHashNetworkService: NetworkService {
-    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<SearchHistory, NetworkError>  {
+    func makeRequest(_ endpoint: Endpoint) -> SignalProducer<SearchHistory, RoboHashError>  {
         return requestSignalProducer(endpoint)
     }
 }

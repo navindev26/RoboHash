@@ -35,22 +35,22 @@ final class RoboHashDataBase: DataBase {
     func fetchAll() throws -> [SearchHistory] {
         let request: NSFetchRequest<CDSearchHistory> = CDSearchHistory.sortedFetchRequest
         guard let result = try coreDataStack?.mainContext?.fetch(request) else {
-            throw CoreDataStackError.fetchError
+            throw RoboHashError.dataFetchError
         }
-        return result.map { SearchHistory(from: $0) }
+        return result.compactMap { SearchHistory(from: $0) }
     }
 
     func totalCount() throws -> Int {
         let request: NSFetchRequest<CDSearchHistory> = CDSearchHistory.sortedFetchRequest
         guard let result = try coreDataStack?.mainContext?.count(for: request) else {
-            throw CoreDataStackError.fetchError
+            throw RoboHashError.dataFetchError
         }
         return result
     }
     
     func save(_ object: SearchHistory) throws {
         guard let context = coreDataStack?.mainContext else {
-            throw CoreDataStackError.contextSaveError
+            throw RoboHashError.dataSaveError
         }
         let cdModel = CDSearchHistory.createObject(from: object, in: context)
         context.insert(cdModel)
@@ -60,25 +60,26 @@ final class RoboHashDataBase: DataBase {
 
 struct SearchHistory {
     var name: String
-    var date: Date?
+    var date: Date
     var image: UIImage?
     
-    init(name: String, date: Date?, image: UIImage?) {
+    init(name: String, date: Date, image: UIImage?) {
         self.name = name
         self.date = date
         self.image = image
     }
     
-    init(from model: CDSearchHistory) {
-        name = model.name ?? ""
-        date = model.date
-        if let imageData = model.image {
-             self.image = UIImage(data: imageData)
-        }
+    init?(from model: CDSearchHistory) {
+        guard let name = model.name else { return nil }
+        guard let searchDate = model.date else { return nil }
+        guard let imageData = model.image else { return nil }
+        self.name = name
+        self.date = searchDate
+        self.image = UIImage(data: imageData)
     }
 
     static var empty: SearchHistory {
-        return SearchHistory(name: "", date: nil, image: nil)
+        return SearchHistory(name: "", date: Date(), image: nil)
     }
 }
 
@@ -86,21 +87,11 @@ extension SearchHistory: ResponseDataSerializable {
 
     init?(httpResponse: HTTPURLResponse?, data: Data?) {
         guard let components = httpResponse?.url?.pathComponents else { return nil }
-        guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
+    //    guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
-        self.date = SharedDateformatter.shared.dateFormat.date(from: dateString)
+       // guard let date = SharedDateformatter.shared.dateFormat.date(from: dateString) else { return nil }
+        self.date = Date()
         self.name = components.dropFirst().joined(separator: "") // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }
-}
-
-// Helper Singleton to avoid setting the format everytime
-
-class SharedDateformatter {
-    static let shared = SharedDateformatter()
-    lazy var dateFormat: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
-        return dateFormatter
-    }()
 }

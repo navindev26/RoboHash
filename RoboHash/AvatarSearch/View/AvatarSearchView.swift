@@ -12,9 +12,10 @@ protocol AvatarSearchViewDelegate: class {
     func view(view:AvatarSearchView, didPerformAction action: AvatarSearchView.Action)
 }
 
-class AvatarSearchView: UIView {
+class AvatarSearchView: UIView, UITextFieldDelegate {
     enum Action {
         case textDidChange(String?)
+        case didTapOnView
     }
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet var avatarImageView: UIImageView!
@@ -30,7 +31,6 @@ class AvatarSearchView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
-        searchTextField.placeholder = "type any name and find an avatar"
     }
 
     private func update() {
@@ -43,5 +43,13 @@ class AvatarSearchView: UIView {
 
     @objc func searchFieldDidChange(_ sender: UITextField) {
         delegate?.view(view: self, didPerformAction: .textDidChange(sender.text))
+    }
+    @IBAction func didTapOnView(_ sender: UITapGestureRecognizer) {
+        delegate?.view(view: self, didPerformAction: .didTapOnView)
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        return !(string.containsWhitespace)
     }
 }
