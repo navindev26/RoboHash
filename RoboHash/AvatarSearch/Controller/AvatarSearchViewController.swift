@@ -19,6 +19,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
     }
     private var textInput = MutableProperty<String?>(nil)
     private var fetchAvatarSignal: SignalProducer<SearchHistory, RoboHashError>?
+    private var inProgressSignal: Disposable?
     private var searchHistoryCount: Int = 0
     private var searchHistoryString: String {
         return "History(\(self.searchHistoryCount))"
@@ -35,17 +36,24 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
 
     private func setupSignals() {
         fetchAvatarSignal = textInput.producer.debounce(1.0, on: QueueScheduler.main).flatMap(.latest) { [weak self] (query: String?) -> SignalProducer<SearchHistory, RoboHashError> in
-            guard let `self` = self, let hash = query  else { return SignalProducer(error: RoboHashError.genericError) }
+            guard let `self` = self else { return SignalProducer.empty }
+            guard let hash = query else {
+                self.avatarSearchView?.viewState = .success(SearchHistory.empty, history: self.searchHistoryString)
+                return SignalProducer.empty
+            }
             self.avatarSearchView?.viewState = .loading(hash, history: self.searchHistoryString)
             return self.repository.fetchAndCacheAvatar(forHash: hash)
         }
     }
 
+
+
     private func observeForChanges() {
         guard let signal = fetchAvatarSignal else {
             return
         }
-        signal.observe(on: UIScheduler()).on(event: { [weak self] (event) in
+        inProgressSignal?.dispose()
+        inProgressSignal = signal.observe(on: UIScheduler()).on(event: { [weak self] (event) in
             guard let `self` = self else { return }
             switch event {
             case .value(let model):
@@ -83,6 +91,10 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
     func view(view: AvatarSearchView, didPerformAction action: AvatarSearchView.Action) {
         switch action {
         case .textDidChange(let text):
+            guard !(text?.isEmpty ?? true) else {
+                textInput.value = nil
+                return
+            }
             textInput.value = text
             observeForChanges()
         case .didTapOnView:

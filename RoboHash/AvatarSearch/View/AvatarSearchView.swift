@@ -41,14 +41,20 @@ class AvatarSearchView: UIView, UITextFieldDelegate {
         state.isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
 
-    // MARK: SearchTextField Target
+     // MARK: Tapgesture Target
+
+    @IBAction func didTapOnView(_ sender: UITapGestureRecognizer) {
+        delegate?.view(view: self, didPerformAction: .didTapOnView)
+    }
+
+    // MARK: SearchTextField
+
+
 
     @objc func searchFieldDidChange(_ sender: UITextField) {
         delegate?.view(view: self, didPerformAction: .textDidChange(sender.text))
     }
-    @IBAction func didTapOnView(_ sender: UITapGestureRecognizer) {
-        delegate?.view(view: self, didPerformAction: .didTapOnView)
-    }
+
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {

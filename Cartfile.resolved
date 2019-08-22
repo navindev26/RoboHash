@@ -1,3 +1,2 @@
 github "Alamofire/Alamofire" "4.8.2"
 github "ReactiveCocoa/ReactiveSwift" "6.1.0"
-github "ra1028/DifferenceKit" "1.1.3"

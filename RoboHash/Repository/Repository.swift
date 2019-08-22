@@ -44,8 +44,12 @@ extension RepositoryRepresentable {
 
     func fetchAndCacheAvatar(forHash hash: String) -> SignalProducer<SearchHistory, RoboHashError> {
         let endpoint = RoboHashAPI.avatar(hash: hash)
-        return SignalProducer {  [weak self] (observer, _) in
+        return SignalProducer {  [weak self] (observer, lifetime) in
             guard let `self` = self else { return }
+            guard !lifetime.hasEnded else {
+                observer.sendInterrupted()
+                return
+            }
             self.service.makeRequest(endpoint).observe(on: UIScheduler()).on(event: { event in
                 switch event {
                 case .value(let value):

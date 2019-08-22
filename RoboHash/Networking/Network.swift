@@ -50,7 +50,11 @@ class RoboHashNetworkService: NetworkService {
 
 extension NetworkService {
     func requestSignalProducer<T:ResponseDataSerializable>(_ endpoint: Endpoint) -> SignalProducer<T, RoboHashError> {
-        return SignalProducer { (observer, _) in
+        return SignalProducer { (observer, lifetime) in
+            guard !lifetime.hasEnded else {
+                observer.sendInterrupted()
+                return
+            }
             guard let request = endpoint.request else {
                 observer.send(error: .requestError)
                 return
