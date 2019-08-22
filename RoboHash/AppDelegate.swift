@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        guard RoboHashDataBase.shared != nil else {
+            fatalError("Could not initialise database")
+        }
         // Override point for customization after application launch.
         return true
     }
