@@ -84,10 +84,10 @@ struct SearchHistory: SearchHistoryModel {
 
     init?(httpResponse: HTTPURLResponse?, data: Data?) {
         guard let components = httpResponse?.url?.pathComponents else { return nil }
-        //    guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
+        guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
         guard let imageData = data else { return nil }
-        // guard let date = SharedDateformatter.shared.dateFormat.date(from: dateString) else { return nil }
-        self.date = Date()
+        guard let date = SharedDateformatter.shared.requestDateFormat.date(from: dateString) else { return nil }
+        self.date = date
         self.name = components.dropFirst().joined(separator: "") // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }

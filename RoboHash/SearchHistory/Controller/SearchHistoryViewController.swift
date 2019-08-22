@@ -26,7 +26,7 @@ class SearchHistoryViewController: UIViewController  {
             switch event {
             case .value(let history):
                 let rows = history.map({ (history) -> Row in
-                    Row(name: history.name, image: history.image, date: SharedDateformatter.shared.dateFormat.string(from: history.date))
+                    Row(name: history.name, image: history.image, date: SharedDateformatter.shared.displayDateFormat.string(from: history.date))
                 })
                 guard !rows.isEmpty else {
                     self.searchHistoryView?.viewState = .empty(.empty)

@@ -41,6 +41,8 @@ class AvatarSearchView: UIView, UITextFieldDelegate {
         state.isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
 
+    // MARK: SearchTextField Target
+
     @objc func searchFieldDidChange(_ sender: UITextField) {
         delegate?.view(view: self, didPerformAction: .textDidChange(sender.text))
     }

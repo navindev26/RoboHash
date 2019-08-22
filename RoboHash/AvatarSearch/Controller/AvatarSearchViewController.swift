@@ -78,6 +78,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
         }).start()
     }
 
+    // MARK: AvatarSearchViewDelegate
 
     func view(view: AvatarSearchView, didPerformAction action: AvatarSearchView.Action) {
         switch action {

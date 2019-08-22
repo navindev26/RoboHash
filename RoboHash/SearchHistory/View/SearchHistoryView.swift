@@ -32,6 +32,8 @@ class SearchHistoryView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    // MARK: UITableView Datasource
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewState.tableViewState.sections.count
     }

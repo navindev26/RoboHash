@@ -14,12 +14,17 @@ import UIKit
 class SharedDateformatter {
     static let shared = SharedDateformatter()
 
-    lazy var dateFormat: DateFormatter = {
+    lazy var displayDateFormat: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
         dateFormatter.locale = Locale.current
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+
+    lazy var requestDateFormat: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, dd LLL yyyy HH:mm:ss zzz"
         return dateFormatter
     }()
 }

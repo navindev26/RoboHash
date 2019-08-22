@@ -14,7 +14,6 @@ class CoreDataStack {
     
     var mainContext: NSManagedObjectContext?
     private var privateContext: NSManagedObjectContext?
-
     static let modelName = "RoboHash"
     static let storeName = "RoboHash"
 
