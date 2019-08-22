@@ -13,7 +13,7 @@ enum SearchHistoryViewState {
     case empty(SearchHistoryTableViewState)
     case error(SearchHistoryTableViewState)
     case success(SearchHistoryTableViewState)
-
+    
     var tableViewState: SearchHistoryTableViewState {
         switch self {
         case .loading(let tableViewState), .empty(let tableViewState),

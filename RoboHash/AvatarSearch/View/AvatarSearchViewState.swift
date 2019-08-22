@@ -9,10 +9,10 @@
 import UIKit
 
 enum AvatarSearchViewState {
-   case loading(String, history: String) // SearchHistory count
-   case success(SearchHistory, history: String)
-   case error(history: String)
-
+    case loading(String, history: String) // SearchHistory count
+    case success(SearchHistory, history: String)
+    case error(history: String)
+    
     var image: UIImage? {
         switch self {
         case .success(let model,_):
@@ -21,7 +21,7 @@ enum AvatarSearchViewState {
             return nil
         }
     }
-
+    
     var text: String {
         switch self {
         case .loading(let text, _):
@@ -32,14 +32,14 @@ enum AvatarSearchViewState {
             return ""
         }
     }
-
+    
     var history: String {
         switch self {
         case .success(_, let history), .error(let history),.loading(_, let history):
             return history
         }
     }
-
+    
     var isLoading: Bool {
         switch self {
         case .loading:

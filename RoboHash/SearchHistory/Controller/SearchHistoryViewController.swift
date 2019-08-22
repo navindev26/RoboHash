@@ -11,16 +11,16 @@ import ReactiveSwift
 
 class SearchHistoryViewController: UIViewController  {
     let repository = Repository()
-
+    
     var searchHistoryView: SearchHistoryView? {
         return self.view as? SearchHistoryView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-
+    
     private func setup() {
         repository.fetchAllSearchHistory().observe(on: UIScheduler()).on(event: { event in
             switch event {
@@ -38,9 +38,9 @@ class SearchHistoryViewController: UIViewController  {
                 self.searchHistoryView?.viewState = .error(.empty)
                 self.showGenericError(title: error.localizedDescription)
             default:
-                 self.searchHistoryView?.viewState = .success(.empty)
+                self.searchHistoryView?.viewState = .success(.empty)
             }
         }).start()
     }
-
+    
 }

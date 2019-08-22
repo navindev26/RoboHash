@@ -17,7 +17,7 @@ protocol RepositoryRepresentable: class {
 }
 
 extension RepositoryRepresentable {
-
+    
     func fetchAllSearchHistory() -> SignalProducer<[SearchHistory], RoboHashError> {
         return SignalProducer {  [weak self] (observer, _) in
             guard let `self` = self else { return }
@@ -29,7 +29,7 @@ extension RepositoryRepresentable {
             }
         }
     }
-
+    
     func totalCount() ->  SignalProducer<Int, RoboHashError> {
         return SignalProducer { [weak self] (observer, lifetime) in
             guard let `self` = self else { return }
@@ -41,7 +41,7 @@ extension RepositoryRepresentable {
             }
         }
     }
-
+    
     func fetchAndCacheAvatar(forHash hash: String) -> SignalProducer<SearchHistory, RoboHashError> {
         let endpoint = RoboHashAPI.avatar(hash: hash)
         return SignalProducer {  [weak self] (observer, lifetime) in
@@ -73,7 +73,7 @@ extension RepositoryRepresentable {
 class Repository: RepositoryRepresentable {
     let database: RoboHashDataBase
     let service = RoboHashNetworkService()
-
+    
     init() {
         guard let database = RoboHashDataBase.shared else {
             fatalError()

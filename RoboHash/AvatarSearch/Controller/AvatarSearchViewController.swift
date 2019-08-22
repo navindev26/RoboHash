@@ -9,8 +9,6 @@
 import UIKit
 import Alamofire
 import ReactiveSwift
-import DifferenceKit
-
 
 class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
     var repository: RepositoryRepresentable = Repository()
@@ -24,7 +22,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
     private var searchHistoryString: String {
         return "History(\(self.searchHistoryCount))"
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         avatarSearchView?.delegate = self
@@ -33,7 +31,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
             self.avatarSearchView?.viewState = .success(SearchHistory.empty, history: self.searchHistoryString)
         }
     }
-
+    
     private func setupSignals() {
         fetchAvatarSignal = textInput.producer.debounce(1.0, on: QueueScheduler.main).flatMap(.latest) { [weak self] (query: String?) -> SignalProducer<SearchHistory, RoboHashError> in
             guard let `self` = self else { return SignalProducer.empty }
@@ -45,9 +43,9 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
             return self.repository.fetchAndCacheAvatar(forHash: hash)
         }
     }
-
-
-
+    
+    
+    
     private func observeForChanges() {
         guard let signal = fetchAvatarSignal else {
             return
@@ -70,7 +68,7 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
             }
         }).start()
     }
-
+    
     private func fetchHistoryCount(completion: ((Int) -> Void)? = nil) {
         repository.totalCount().observe(on: UIScheduler()).on(event: { [weak self] (event) in
             guard let `self` = self else { return }
@@ -85,9 +83,9 @@ class AvatarSearchViewController: UIViewController, AvatarSearchViewDelegate {
             }
         }).start()
     }
-
+    
     // MARK: AvatarSearchViewDelegate
-
+    
     func view(view: AvatarSearchView, didPerformAction action: AvatarSearchView.Action) {
         switch action {
         case .textDidChange(let text):

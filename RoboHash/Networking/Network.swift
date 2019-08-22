@@ -20,7 +20,7 @@ enum RoboHashError: Error {
     case dataFetchError
     case dataSaveError
     case databaseError
-
+    
     var localizedDescription: String {
         switch self {
         case .noInternet:
@@ -29,11 +29,11 @@ enum RoboHashError: Error {
             return "Uh oh, something went wrong"
         }
     }
-
+    
 }
 
 protocol ResponseDataSerializable {
-     init?(httpResponse: HTTPURLResponse?, data: Data?)
+    init?(httpResponse: HTTPURLResponse?, data: Data?)
 }
 
 protocol NetworkService {

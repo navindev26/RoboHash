@@ -19,7 +19,7 @@ protocol DataBase {
 }
 
 final class RoboHashDataBase: DataBase {
-
+    
     var coreDataStack: CoreDataStack?
     static let shared = RoboHashDataBase(coreDataStack: CoreDataStack.prodStack())
     typealias Model = SearchHistory
@@ -36,7 +36,7 @@ final class RoboHashDataBase: DataBase {
         }
         return result.compactMap { SearchHistory(from: $0) }
     }
-
+    
     func totalCount() throws -> Int {
         let request: NSFetchRequest<CDSearchHistory> = CDSearchHistory.sortedFetchRequest
         guard let result = try coreDataStack?.mainContext?.count(for: request) else {
@@ -49,9 +49,10 @@ final class RoboHashDataBase: DataBase {
         guard let context = coreDataStack?.mainContext else {
             throw RoboHashError.dataSaveError
         }
-        let cdModel = CDSearchHistory.createObject(from: object, in: context)
-        context.insert(cdModel)
-        try coreDataStack?.save()
+        if let cdModel = CDSearchHistory.createObject(from: object, in: context) {
+            context.insert(cdModel)
+            try coreDataStack?.save()
+        }
     }
 }
 
@@ -81,7 +82,7 @@ struct SearchHistory: SearchHistoryModel {
         self.date = searchDate
         self.image = UIImage(data: imageData)
     }
-
+    
     init?(httpResponse: HTTPURLResponse?, data: Data?) {
         guard let components = httpResponse?.url?.pathComponents else { return nil }
         guard let dateString = httpResponse?.allHeaderFields["Date"] as? String else { return nil }
@@ -91,7 +92,7 @@ struct SearchHistory: SearchHistoryModel {
         self.name = components.dropFirst().joined(separator: "") // we remove the occurence of "/"
         self.image = UIImage(data: imageData)
     }
-
+    
     static var empty: SearchHistory {
         return SearchHistory(name: "", date: Date(), image: nil)
     }

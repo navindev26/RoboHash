@@ -27,12 +27,12 @@ class AvatarSearchView: UIView, UITextFieldDelegate {
             update()
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         searchTextField.addTarget(self, action: #selector(searchFieldDidChange(_:)), for: .editingChanged)
     }
-
+    
     private func update() {
         guard let state = viewState else { return }
         searchTextField.text = state.text
@@ -40,22 +40,22 @@ class AvatarSearchView: UIView, UITextFieldDelegate {
         avatarImageView.image = state.image
         state.isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
-
-     // MARK: Tapgesture Target
-
+    
+    // MARK: Tapgesture Target
+    
     @IBAction func didTapOnView(_ sender: UITapGestureRecognizer) {
         delegate?.view(view: self, didPerformAction: .didTapOnView)
     }
-
+    
     // MARK: SearchTextField
-
-
-
+    
+    
+    
     @objc func searchFieldDidChange(_ sender: UITextField) {
         delegate?.view(view: self, didPerformAction: .textDidChange(sender.text))
     }
-
-
+    
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         return !(string.containsWhitespace)
